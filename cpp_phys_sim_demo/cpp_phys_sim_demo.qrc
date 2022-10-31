@@ -1,0 +1,4 @@
+<RCC>
+    <qresource prefix="cpp_phys_sim_demo">
+    </qresource>
+</RCC>

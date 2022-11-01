@@ -14,6 +14,8 @@ simulated_enity::simulated_enity()
 		
 	needRefresh = true;
 
+	needClose = false;
+
 	iters = 0;
 }
 

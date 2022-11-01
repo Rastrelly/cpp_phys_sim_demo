@@ -12,6 +12,7 @@ private:
 	std::chrono::steady_clock::time_point lastUpdate;
 	float deltaTime;
 	bool needRefresh;
+	bool needClose;
 
 	float m;
 	float g;
@@ -36,6 +37,8 @@ public:
 	void logData(std::string txt) { log += (txt + "\n"); };
 	std::string getLog() { return log; };
 	long int getIterations() { return iters; };
+	bool getNeedClose() { return needClose; };
+	void setNeedClose(bool val) { needClose = val; };
 };
 
 

@@ -7,6 +7,7 @@ cpp_phys_sim_demo::cpp_phys_sim_demo(QWidget *parent)
     ui.setupUi(this);
 	connect(ui.btnRun, SIGNAL(clicked()), SLOT(btnRunClick()));
 	connect(ui.btnUpdate, SIGNAL(clicked()), SLOT(btnUpdateClick()));
+	connect(this, SIGNAL(close()), SLOT(processClose()));
 }
 
 cpp_phys_sim_demo::~cpp_phys_sim_demo()
@@ -42,4 +43,9 @@ void cpp_phys_sim_demo::btnUpdateClick()
 void cpp_phys_sim_demo::setSimEnt(simulated_enity * se)
 {
 	simEnt = se;
+}
+
+void cpp_phys_sim_demo::processClose()
+{
+	simEnt->setNeedClose(true);
 }

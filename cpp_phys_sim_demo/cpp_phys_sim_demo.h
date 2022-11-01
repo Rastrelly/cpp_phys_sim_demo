@@ -19,4 +19,5 @@ private:
 private slots:
 	void btnRunClick();
 	void btnUpdateClick();
+	void processClose();
 };

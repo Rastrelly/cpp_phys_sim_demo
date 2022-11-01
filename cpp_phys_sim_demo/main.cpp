@@ -26,13 +26,14 @@ int main(int argc, char *argv[])
 	
 	std::thread simThread(simThreadFunc, &simEnt);
 	std::thread glutThread(glutThreadFunc, &simEnt, argc, argv);
+	simThread.detach();
+	glutThread.detach();
 
 	w.setSimEnt(&simEnt);	
 
 	return a.exec();
 
-	simThread.join();
-	glutThread.join();
+	
 }
 
 void simThreadFunc(simulated_enity * se)
@@ -40,6 +41,7 @@ void simThreadFunc(simulated_enity * se)
 	while (true)
 	{
 		simEnt.runSimActions();
+		if (se->getNeedClose()) break;
 	}
 }
 
@@ -73,6 +75,10 @@ void initGLUT(int argc, char *argv[])
 
 void cbIdle()
 {
+	if (simEnt.getNeedClose())
+	{
+		glutLeaveMainLoop();
+	}
 	if (simEnt.getNeedRefresh())
 	{
 		simEnt.setNeedRefresh(false);
